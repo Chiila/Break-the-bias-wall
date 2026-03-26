@@ -1,26 +1,166 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --hot-pink: #ff69b4;
+  --light-pink: #ffd6e8;
+  --highlighter: #fff44f;
+  --ink: #0a0a0a;
+  --paper: #fffef6;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100dvh;
+  color: var(--ink);
+  font-family: var(--font-hand), system-ui, cursive;
+  background-color: var(--light-pink);
+  background-image:
+    radial-gradient(ellipse 120% 80% at 10% 20%, rgba(255, 105, 180, 0.45), transparent 55%),
+    radial-gradient(ellipse 90% 70% at 90% 10%, rgba(255, 182, 213, 0.7), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 70% 85%, rgba(255, 20, 147, 0.2), transparent 45%),
+    repeating-linear-gradient(
+      125deg,
+      rgba(255, 255, 255, 0.06) 0 2px,
+      transparent 2px 9px
+    ),
+    repeating-linear-gradient(
+      -15deg,
+      rgba(0, 0, 0, 0.03) 0 1px,
+      transparent 1px 7px
+    );
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  width: 180px;
+  height: 220px;
+  right: -40px;
+  bottom: 10%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(194, 24, 91, 0.35) 0%,
+    rgba(194, 24, 91, 0.12) 45%,
+    transparent 70%
+  );
+  transform: rotate(-18deg);
+  z-index: 0;
+}
+
+.notebook-paper {
+  position: relative;
+  background: var(--paper);
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 27px,
+    rgba(255, 105, 180, 0.12) 27px,
+    rgba(255, 105, 180, 0.12) 28px
+  );
+  clip-path: polygon(
+    0% 1.5%,
+    2% 0%,
+    5% 1.2%,
+    9% 0%,
+    14% 1.8%,
+    19% 0.4%,
+    25% 1.2%,
+    32% 0%,
+    40% 1.5%,
+    48% 0.3%,
+    55% 1.1%,
+    63% 0%,
+    72% 1.6%,
+    80% 0.2%,
+    88% 1.3%,
+    95% 0%,
+    100% 1.8%,
+    99.5% 8%,
+    100% 16%,
+    99.2% 24%,
+    100% 32%,
+    99.4% 41%,
+    100% 50%,
+    99.1% 58%,
+    100% 67%,
+    99.3% 76%,
+    100% 85%,
+    99.5% 94%,
+    100% 100%,
+    94% 99.2%,
+    86% 100%,
+    78% 99.4%,
+    68% 100%,
+    58% 99.3%,
+    48% 100%,
+    38% 99.5%,
+    28% 100%,
+    18% 99.2%,
+    8% 100%,
+    0% 98.5%,
+    0.8% 90%,
+    0% 80%,
+    0.6% 70%,
+    0% 60%,
+    0.7% 50%,
+    0% 40%,
+    0.5% 30%,
+    0% 20%,
+    0.9% 10%
+  );
+}
+
+.tape {
+  position: absolute;
+  width: 88px;
+  height: 28px;
+  z-index: 2;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(200, 200, 200, 0.85) 0 4px,
+    rgba(230, 230, 230, 0.9) 4px 8px
+  );
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  opacity: 0.92;
+}
+
+.tape-tl {
+  left: 12px;
+  top: -12px;
+  transform: rotate(-32deg);
+}
+
+.tape-tr {
+  right: 16px;
+  top: -10px;
+  transform: rotate(24deg);
+}
+
+.sticky-note {
+  background-image: radial-gradient(
+    ellipse 80% 50% at 20% 0%,
+    rgba(255, 244, 79, 0.2),
+    transparent 55%
+  );
+}
+
+.font-hand {
+  font-family: var(--font-hand), cursive, system-ui;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
 }
